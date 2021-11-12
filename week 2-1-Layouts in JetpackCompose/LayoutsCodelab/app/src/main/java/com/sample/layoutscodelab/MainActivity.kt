@@ -12,6 +12,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -27,12 +30,58 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LayoutsCodelabTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    PhotographerCard()
+                LayoutCodelab()
+            }
+        }
+    }
+}
+
+@Composable
+private fun LayoutCodelab() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "LayoutsCodelab")
+                },
+                actions = {
+                    IconButton(onClick = { /* doSomething() */ }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = null)
+                    }
+                }
+            )
+        },
+        bottomBar = {
+            BottomNavigation {
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(Icons.Filled.Image, contentDescription = null)
+                }
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(Icons.Filled.Image, contentDescription = null)
+                }
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(Icons.Filled.Image, contentDescription = null)
                 }
             }
         }
+    ) { innerPadding ->
+        BodyContent(Modifier.padding(innerPadding))
+    }
+}
+
+@Composable
+private fun BodyContent(modifier: Modifier) {
+    Column(modifier) {
+        Text(text = "Hi there!")
+        Text(text = "Thanks for going through the Layouts codelab")
+    }
+}
+
+@Preview
+@Composable
+fun LayoutCodelabPreview() {
+    LayoutsCodelabTheme {
+        LayoutCodelab()
     }
 }
 
@@ -70,18 +119,5 @@ fun PhotographerCard(modifier: Modifier = Modifier) {
 fun PhotographerCardPreview() {
     LayoutsCodelabTheme {
         PhotographerCard()
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    LayoutsCodelabTheme {
-        Greeting("Android")
     }
 }
